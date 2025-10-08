@@ -122,7 +122,7 @@ def generate_text_response(input_text, lang):
                     "content": f"Give in short only the remedy for the given query - {input_text} ",
                 }
             ],
-            model="llama3-8b-8192",
+            model="llama-3.1-8b-instant",
         )
         logging.info(f"Text Generated Successfully")
         return chat_completion.choices[0].message.content
@@ -136,6 +136,7 @@ def classify_page(input_text, lang):
         if not groq_text_generation_key:
             raise ValueError("GORQ_TEXT_GENERATION_KEY environment variable not set")
     except Exception as e:
+        print("Error caused due to  : ",e)
         return "Error loading Groq API key"
 
 
@@ -169,12 +170,14 @@ def classify_page(input_text, lang):
                     "content": prompt,
                 }
             ],
-            model="llama3-8b-8192",
+            model="llama-3.1-8b-instant",
         )
 
         return chat_completion.choices[0].message.content.strip()
     
     except Exception as e:
+        logging.error(f"Error generating text response:{str(e)}", exc_info=True) 
+        print(e)
         return "Error generating text response"
 
 
@@ -249,7 +252,7 @@ def classify_specialization(input_text):
                     "content": prompt,
                 }
             ],
-            model="llama3-8b-8192",
+            model="llama-3.1-8b-instant",
         )
 
         return chat_completion.choices[0].message.content.strip()
