@@ -36,7 +36,6 @@ SECRET_KEY = 'django-insecure-vd(*yei7#3hrs3j-nmqofciicnrk-6vbx8zw-romd4jt9r*gv-
 # DEBUG = os.environ.get("DEBUG","False").lower() == "true"
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','.vercel.app','172.17.12.83','ror-django-backend-7pxm.onrender.com']
 
 
 # Application definition
